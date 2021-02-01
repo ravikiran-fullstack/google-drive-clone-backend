@@ -57,11 +57,11 @@ const connectToMongoDb = async () => {
 function updateCounter() {}
 
 connectToMongoDb();
- 
+
 app.post('/register',async (req, res) => {
   console.log('/register',req.body);
 
-  if(req.body.username === undefined || req.body.username === '' || req.body.password === undefined || req.body.password === '' ){
+  if(req.body.username === undefined || req.body.username === '' || req.body.password === undefined || req.body.password === '' || req.body.firstName === undefined || req.body.firstName === '' || req.body.lastName === undefined || req.body.lastName === ''){
     res.status(400).json({message: "Enter valid credentials"});
   } else {
 
@@ -74,6 +74,8 @@ app.post('/register',async (req, res) => {
         const hash = await bcrypt.hash(req.body.password, 10);
         console.log(hash, req.body.password);
         const registerUser = new RegisterUser({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
           username: req.body.username,
           password: hash
         });

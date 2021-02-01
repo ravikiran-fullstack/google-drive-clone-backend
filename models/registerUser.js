@@ -3,11 +3,19 @@ const Schema = mongoose.Schema;
 
 const registerUserSchema = new Schema({
   username: {
-    type: String, 
+    type: String,
     required: true
-  }, 
+  },
   password: {
-    type: String, 
+    type: String,
+    required: true
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
     required: true
   }
 }, {timestamps: true});
